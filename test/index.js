@@ -3,8 +3,11 @@
 import path from "path";
 import fs from "fs";
 
-import {expect} from "chai";
+import {
+    expect
+} from "chai";
 import sinon from "sinon";
+import mock from "mock-fs";
 
 import getPaths from "../src/index.js";
 
@@ -17,18 +20,36 @@ let getRelativePaths = async function(ext) {
 
 describe("getPaths()", function() {
     beforeEach(function() {
-        this.originalCwd = process.cwd();
-        process.chdir("./test/fixtures");
-
         // create a sandbox
         this.sandbox = sinon.sandbox.create();
+
+        // create a mock filesystem
+        mock({
+            "folder1": {
+                "test.js": "Test"
+            },
+            "folder2": {
+                "test2.js": "Test",
+                "test.scss": "Test"
+            },
+            "folder3": {
+                "test.scss": "Test"
+            },
+            "node_modules": {
+                "folder1": {
+                    "test.js": "Test",
+                    "test.scss": "Test"
+                },
+                "index.js": "Test"
+            }
+        });
     });
 
     afterEach(function() {
-        process.chdir(this.originalCwd);
-
         // restore the environment as it was before
         this.sandbox.restore();
+
+        mock.restore();
     });
 
     it("should return only folders containing files with the specified extension", async function() {
@@ -54,7 +75,7 @@ describe("getPaths()", function() {
 
         try {
             getRelativePaths("js");
-        } catch(e) {
+        } catch (e) {
             expect(e).to.equal("mock failure");
         }
     });
