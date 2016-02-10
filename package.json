@@ -40,7 +40,9 @@
     "sinon": "^1.17.3",
     "validate-commit-msg": "^1.1.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "glob": "^6.0.4"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/unumux/ux-get-paths"
