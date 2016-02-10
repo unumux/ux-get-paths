@@ -1,0 +1,14 @@
+{
+    "ecmaVersion": 6,
+    "libs": [],
+    "dontLoad": [
+        "dist/**",
+        "src/test/*.js",
+        "gulpfile.js"
+    ],
+    "plugins": {
+        "node": true,
+        "modules": true,
+        "es_modules": true
+    }
+}
