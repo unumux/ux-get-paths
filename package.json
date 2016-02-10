@@ -36,6 +36,7 @@
     "isparta": "^4.0.0",
     "jsdoc": "^3.4.0",
     "mocha": "^2.4.5",
+    "mock-fs": "^3.7.0",
     "semantic-release": "^4.3.5",
     "sinon": "^1.17.3",
     "validate-commit-msg": "^1.1.1"
