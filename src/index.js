@@ -13,17 +13,56 @@ function getPaths(ext, opts) {
         glob(`**/*.${ext}`, {
             ignore: options.ignoreFolders
         }, function(err, paths) {
-            if(err) {
+            if (err) {
                 reject(err);
             } else {
                 let folderNames = _(paths).map(function(singlePath) {
-                    return path.resolve(path.dirname(singlePath));
+                    return path.dirname(singlePath);
                 }).uniq().value();
+
+                folderNames = mergeCommonFolders(folderNames);
 
                 resolve(folderNames);
             }
         });
     });
+}
+
+function mergeCommonFolders(paths) {
+    paths = paths.map(function(singlePath) {
+        return singlePath.split("/");
+    });
+
+
+    var newPaths = paths.map(function(value, i) {
+        var commonPath = _.filter(value, function(part, j) {
+            var partsAtIndex = paths.map(function(value, k) {
+                if (i === k) {
+                    return undefined;
+                }
+
+                return value[j];
+            });
+
+            return partsAtIndex.indexOf(part) >= 0;
+
+        });
+
+        if (commonPath.length === 0) {
+            return value;
+        }
+
+        return commonPath;
+
+    });
+
+    newPaths = _.uniqWith(newPaths, _.isEqual);
+    newPaths = newPaths.map(function(newPath) {
+        return newPath.join("/");
+    });
+
+
+    return newPaths;
 }
 
 module.exports = getPaths;
