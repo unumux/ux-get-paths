@@ -9,7 +9,8 @@
     "test": "gulp test",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "semantic-release": "semantic-release pre && npm publish --access public && semantic-release post",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "prepublish": "gulp build"
   },
   "author": "",
   "license": "MIT",
