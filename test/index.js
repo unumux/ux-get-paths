@@ -1,6 +1,5 @@
 /*eslint-env node, mocha */
 
-import path from "path";
 import fs from "fs";
 
 import {
@@ -10,13 +9,6 @@ import sinon from "sinon";
 import mock from "mock-fs";
 
 import getPaths from "../src/index.js";
-
-let getRelativePaths = async function(ext) {
-    let paths = (await getPaths(ext)).map(function(absPath) {
-        return path.relative("./", absPath);
-    });
-    return paths;
-};
 
 describe("getPaths()", function() {
     describe("folder structure 1", function() {
@@ -54,15 +46,15 @@ describe("getPaths()", function() {
         });
 
         it("should return only folders containing files with the specified extension", async function() {
-            let paths = getRelativePaths("js");
+            let paths = getPaths("js");
             expect(await paths).to.eql(["folder1", "folder2"]);
 
-            paths = getRelativePaths("scss");
+            paths = getPaths("scss");
             expect(await paths).to.eql(["folder2", "folder3"]);
         });
 
         it("should return an empty array if the extension was not found", async function() {
-            let paths = getRelativePaths("nope");
+            let paths = getPaths("nope");
             expect(await paths).to.eql([]);
         });
 
@@ -75,7 +67,7 @@ describe("getPaths()", function() {
             });
 
             try {
-                getRelativePaths("js");
+                getPaths("js");
             } catch (e) {
                 expect(e).to.equal("mock failure");
             }
@@ -139,7 +131,8 @@ describe("getPaths()", function() {
                         "test.scss": "Test"
                     },
                     "index.js": "Test"
-                }
+                },
+                "test.scss": "Test"
             });
         });
 
@@ -151,8 +144,8 @@ describe("getPaths()", function() {
         });
 
         it("should return the lowest common folder", async function() {
-            let paths = getRelativePaths("scss");
-            expect(await paths).to.eql(["folder2", "folder3", "folder4", "folder5/folder5-1", "folder6/folder6-1"]);
+            let paths = getPaths("scss");
+            expect(await paths).to.eql(["folder2", "folder3", "folder4", "folder5/folder5-1", "folder6/folder6-1", "."]);
         });
     });
 });
