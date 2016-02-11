@@ -1,0 +1,75 @@
+{
+    "1": {
+        "folder1": {
+            "test.js": "Test"
+        },
+        "folder2": {
+            "test2.js": "Test",
+            "test.scss": "Test"
+        },
+        "folder3": {
+            "test.scss": "Test"
+        },
+        "node_modules": {
+            "folder1": {
+                "test.js": "Test",
+                "test.scss": "Test"
+            },
+            "index.js": "Test"
+        }
+    },
+    "2": {
+        "folder1": {
+            "test.js": "Test"
+        },
+        "folder2": {
+            "test2.js": "Test",
+            "test.scss": "Test"
+        },
+        "folder3": {
+            "test.scss": "Test"
+        },
+        "folder4": {
+            "folder4-1": {
+                "test.scss": "Test"
+            },
+            "folder4-2": {
+                "test.scss": "Test"
+            },
+            "folder4-3": {
+                "test.js": "Test"
+            }
+        },
+        "folder5": {
+            "folder5-1": {
+                "test.scss": "Test"
+            },
+            "folder5-2": {
+                "test.js": "Test"
+            }
+        },
+        "folder6": {
+            "folder6-1": {
+                "folder6-1-1": {
+                    "test.scss": "Test"
+                },
+                "folder6-1-2": {
+                    "test.scss": "Test"
+                }
+            },
+            "folder6-2": {
+                "folder6-2-1": {
+                    "test.js": "Test"
+                }
+            }
+        },
+        "node_modules": {
+            "folder1": {
+                "test.js": "Test",
+                "test.scss": "Test"
+            },
+            "index.js": "Test"
+        },
+        "test.scss": "Test"
+    }
+}

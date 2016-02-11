@@ -5,10 +5,13 @@ import fs from "fs";
 import {
     expect
 } from "chai";
+
 import sinon from "sinon";
 import mock from "mock-fs";
 
 import getPaths from "../src/index.js";
+
+const MOCK_FOLDERS = require("./mock-folders.json");
 
 describe("getPaths()", function() {
     describe("folder structure 1", function() {
@@ -17,25 +20,7 @@ describe("getPaths()", function() {
             this.sandbox = sinon.sandbox.create();
 
             // create a mock filesystem
-            mock({
-                "folder1": {
-                    "test.js": "Test"
-                },
-                "folder2": {
-                    "test2.js": "Test",
-                    "test.scss": "Test"
-                },
-                "folder3": {
-                    "test.scss": "Test"
-                },
-                "node_modules": {
-                    "folder1": {
-                        "test.js": "Test",
-                        "test.scss": "Test"
-                    },
-                    "index.js": "Test"
-                }
-            });
+            mock(MOCK_FOLDERS["1"]);
         });
 
         afterEach(function() {
@@ -80,60 +65,7 @@ describe("getPaths()", function() {
             this.sandbox = sinon.sandbox.create();
 
             // create a mock filesystem
-            mock({
-                "folder1": {
-                    "test.js": "Test"
-                },
-                "folder2": {
-                    "test2.js": "Test",
-                    "test.scss": "Test"
-                },
-                "folder3": {
-                    "test.scss": "Test"
-                },
-                "folder4": {
-                    "folder4-1": {
-                        "test.scss": "Test"
-                    },
-                    "folder4-2": {
-                        "test.scss": "Test"
-                    },
-                    "folder4-3": {
-                        "test.js": "Test"
-                    }
-                },
-                "folder5": {
-                    "folder5-1": {
-                        "test.scss": "Test"
-                    },
-                    "folder5-2": {
-                        "test.js": "Test"
-                    }
-                },
-                "folder6": {
-                    "folder6-1": {
-                        "folder6-1-1": {
-                            "test.scss": "Test"
-                        },
-                        "folder6-1-2": {
-                            "test.scss": "Test"
-                        }
-                    },
-                    "folder6-2": {
-                        "folder6-2-1": {
-                            "test.js": "Test"
-                        }
-                    }
-                },
-                "node_modules": {
-                    "folder1": {
-                        "test.js": "Test",
-                        "test.scss": "Test"
-                    },
-                    "index.js": "Test"
-                },
-                "test.scss": "Test"
-            });
+            mock(MOCK_FOLDERS["2"]);
         });
 
         afterEach(function() {
