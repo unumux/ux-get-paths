@@ -78,6 +78,9 @@ describe("getPaths()", function() {
         it("should return the lowest common folder", async function() {
             let paths = getPaths("scss");
             expect(await paths).to.eql(["folder2", "folder3", "folder4", "folder5/folder5-1", "folder6/folder6-1", "."]);
+
+            paths = getPaths("js");
+            expect(await paths).to.eql(["folder1", "folder2", "folder4/folder4-3", "folder5/folder5-2", "folder6/folder6-2/folder6-2-1"]);
         });
     });
 });
